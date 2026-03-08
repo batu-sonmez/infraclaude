@@ -1,0 +1,24 @@
+# Intentionally broken pod for demo purposes
+# This pod will CrashLoopBackOff — perfect for demonstrating InfraClaude debugging
+apiVersion: v1
+kind: Pod
+metadata:
+  name: broken-pod
+  namespace: demo
+  labels:
+    app: broken-app
+    demo: "true"
+spec:
+  containers:
+    - name: broken
+      image: busybox:1.36
+      # This command will consume memory until OOMKilled
+      command: ["sh", "-c", "echo 'Starting broken app...'; sleep 2; echo 'ERROR: Failed to connect to database at db:5432'; exit 1"]
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 50m
+          memory: 32Mi
+  restartPolicy: Always

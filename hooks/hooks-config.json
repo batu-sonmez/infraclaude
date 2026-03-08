@@ -1,0 +1,35 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__infraclaude__k8s_delete_*",
+        "command": "node hooks/examples/require-approval.ts",
+        "description": "Require human approval before any K8s delete operation"
+      },
+      {
+        "matcher": "mcp__infraclaude__terraform_*",
+        "command": "node hooks/examples/block-dangerous-commands.ts",
+        "description": "Block destructive Terraform operations"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__infraclaude__k8s_rollout_*",
+        "command": "node hooks/examples/auto-healthcheck.ts",
+        "description": "Automatically check deployment health after rollout"
+      },
+      {
+        "matcher": "mcp__infraclaude__*",
+        "command": "node hooks/examples/audit-trail.ts",
+        "description": "Log all infrastructure operations to audit trail"
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "mcp__infraclaude__k8s_delete_*",
+        "command": "echo '⚠️ Destructive K8s operation detected'",
+        "description": "Alert on destructive Kubernetes operations"
+      }
+    ]
+  }
+}
