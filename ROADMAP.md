@@ -1,6 +1,6 @@
 # InfraClaude Roadmap
 
-## Current Status: v1.0.0 — Core Platform Complete
+## Status: v1.0.0 — Core Platform Complete
 
 InfraClaude currently provides **41 tools** across 8 categories with a full safety layer, audit logging, and Claude Code integration.
 
