@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "infraclaude": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "KUBECONFIG": "",
+        "PROMETHEUS_URL": "http://localhost:9090"
+      }
+    }
+  }
+}
